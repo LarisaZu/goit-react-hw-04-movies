@@ -6,12 +6,14 @@ const imageUrl = 'https://image.tmdb.org/t/p/w500';
 
 const MovieDetailsView = () => {
     const { movieId } = useParams();
+    // const ddf = useParams();
+    // console.log(ddf);
     const [movie, setMovie] = useState();
 
     useEffect(() => {
         fetchMovieById(movieId).then(setMovie);
     }, [movieId]);
-    console.log(movie);
+    // console.log(movie);
     // console.log(movie.poster_path);
     // const src = `${imageUrl}${movie.poster_path}`
     // console.log(src);

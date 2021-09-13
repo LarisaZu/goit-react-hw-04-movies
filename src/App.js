@@ -6,6 +6,8 @@ import HomeView from './views/HomeView';
 import MoviesView from './views/MoviesView';
 import NotFoundView from './views/NotFoundView';
 import MovieDetailsView from './views/MovieDetailsView';
+import CastView from './views/CastView';
+import ReviewsView from './views/ReviewsView';
 
 function App() {
     return (
@@ -18,8 +20,14 @@ function App() {
                 <Route path="/movies" exact>
                     <MoviesView />
                 </Route>
-                <Route path="/movies/:movieId">
+                <Route path="/movies/:movieId" exact>
                     <MovieDetailsView />
+                </Route>
+                <Route path="/movies/:movieId/cast">
+                    <CastView />
+                </Route>
+                <Route path="/movies/:movieId/reviews">
+                    <ReviewsView />
                 </Route>
                 <Route>
                     <NotFoundView />
