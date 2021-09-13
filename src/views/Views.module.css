@@ -1,0 +1,23 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: -15px; */
+}
+
+.gallery_item {
+    width: calc((100% - 80px) / 4);
+    margin: 0 auto 30px;
+    /* margin: 10px; */
+}
+
+.poster {
+    /* height: 238px; */
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.movie_title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}

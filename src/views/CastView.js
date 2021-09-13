@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchMovieCast } from '../services/movies-api';
 import { options } from '../services/movies-api';
 import profileImg from '../image/profile.jpg';
@@ -7,11 +7,13 @@ import profileImg from '../image/profile.jpg';
 // const imageUrl = 'https://image.tmdb.org/t/p/w200';
 
 const CastView = () => {
+    const { movieId } = useParams();
+    // console.log(params);
     const [cast, setCast] = useState(null);
 
     useEffect(() => {
-        fetchMovieCast(649087).then(response => setCast(response.cast));
-    }, []);
+        fetchMovieCast(movieId).then(response => setCast(response.cast));
+    }, [movieId]);
     console.log(cast);
     return (
         <>

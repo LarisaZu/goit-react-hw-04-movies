@@ -8,6 +8,7 @@ import NotFoundView from './views/NotFoundView';
 import MovieDetailsView from './views/MovieDetailsView';
 import CastView from './views/CastView';
 import ReviewsView from './views/ReviewsView';
+import AdditionalInfoView from './views/AdditionalInfoView';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 </Route>
                 <Route path="/movies/:movieId" exact>
                     <MovieDetailsView />
+                    {/* <AdditionalInfoView /> */}
                 </Route>
                 <Route path="/movies/:movieId/cast">
                     <CastView />

@@ -1,7 +1,7 @@
-// import styles from './PageHeading.module.css';
+import s from './PageHeading.module.css';
 
 function PageHeading({ text }) {
-    return <h1>{text}</h1>;
+    return <h2 className={s.title}>{text}</h2>;
 }
 
 export default PageHeading;
