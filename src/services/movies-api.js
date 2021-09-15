@@ -2,6 +2,8 @@ export const options = {
     BASE_URL: 'https://api.themoviedb.org/3/',
     API_KEY: 'bb99cf0123948bcb57616045b789da85',
     IMG_URL: 'https://image.tmdb.org/t/p/',
+    DEFAULT_IMG_URL:
+        'https://image.tmdb.org/t/p/w342/AvgrHw6YEehlNxVZNVDoVz2Huht.jpg',
 };
 
 async function fetchApi(url = '', config = {}) {

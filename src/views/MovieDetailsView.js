@@ -1,59 +1,75 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import {
+    useParams,
+    useLocation,
+    useHistory,
+    useRouteMatch,
+} from 'react-router-dom';
 import { options, fetchMovieById } from '../services/movies-api';
 import AdditionalInfoView from './AdditionalInfoView';
-
-const imageUrl = 'https://image.tmdb.org/t/p/w500';
+import s from './css/MovieDetails.module.css';
 
 const MovieDetailsView = () => {
-    const params = useParams();
-    console.log(params);
+    const location = useLocation();
+    const history = useHistory();
+    // const { path } = useRouteMatch();
     const { movieId } = useParams();
-    // const ddf = useParams();
-    // console.log(ddf);
     const [movie, setMovie] = useState();
 
     useEffect(() => {
         fetchMovieById(movieId).then(setMovie);
     }, [movieId]);
-    // console.log(movie);
-    // console.log(movie.poster_path);
-    // const src = `${imageUrl}${movie.poster_path}`
-    // console.log(src);
-    // response => console.log(response)
-    // console.log(movieId);
+
+    const onGoBack = () => {
+        history.push(location?.state?.from ?? '/');
+    };
+
     return (
         <>
-            {/* {movie && <h1>rtrtrtr</h1>} */}
+            <button type="button" onClick={onGoBack}>
+                Go back
+            </button>
             {movie && (
                 <>
-                    <div>
+                    <div className={s.wrapper}>
                         <img
-                            src={`${imageUrl}${movie.poster_path}`}
+                            src={
+                                movie.poster_path
+                                    ? `${options.IMG_URL}w500${movie.poster_path}`
+                                    : `${options.DEFAULT_IMG_URL}`
+                            }
                             alt={movie.title}
+                            className={s.poster}
                         />
-                        <h3>
-                            {movie.title} (
-                            {movie.release_date
-                                ? movie.release_date.slice(0, 4)
-                                : ''}
-                            )
-                        </h3>
-                        <p>User Score: {(movie.vote_average * 100) / 10}%</p>
-                        <h4>Overview</h4>
-                        <p>{movie.overview}</p>
-                        {movie.genres && (
-                            <>
-                                <h4>Genres</h4>
-                                <p>
-                                    {movie.genres
-                                        .map(({ name }) => name)
-                                        .join(', ')}
-                                </p>
-                            </>
-                        )}
+
+                        <div className={s.description}>
+                            <h3>
+                                {movie.title} (
+                                {movie.release_date
+                                    ? movie.release_date.slice(0, 4)
+                                    : ''}
+                                )
+                            </h3>
+                            <p>
+                                User Score: {(movie.vote_average * 100) / 10}%
+                            </p>
+                            <h4>Overview</h4>
+                            <p>{movie.overview}</p>
+                            {movie.genres && (
+                                <>
+                                    <h4>Genres</h4>
+                                    <p>
+                                        {movie.genres
+                                            .map(({ name }) => name)
+                                            .join(', ')}
+                                    </p>
+                                </>
+                            )}
+                        </div>
                     </div>
+                    {/* <Route path={`${path}`}> */}
                     <AdditionalInfoView />
+                    {/* </Route> */}
                 </>
             )}
         </>
